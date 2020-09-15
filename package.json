@@ -4,6 +4,7 @@
   "description": "### Installation 1. Clone repo 2. Open project directory 3. run ```npm install``` command 3. run ```node app.js``` command",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Igor Shmidt",
