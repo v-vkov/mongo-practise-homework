@@ -1,0 +1,32 @@
+[
+  {
+    "firstName": "Ostap",
+    "lastName": "Bur",
+    "department": "a"
+  },
+  {
+    "firstName": "Alisa",
+    "lastName": "Son",
+    "department": "a"
+  },
+  {
+    "firstName": "Vika",
+    "lastName": "Kov",
+    "department": "b"
+  },
+  {
+    "firstName": "Mimi",
+    "lastName": "Bet",
+    "department": "b"
+  },
+  {
+    "firstName": "Vasia",
+    "lastName": "Bazz",
+    "department": "c"
+  },
+  {
+    "firstName": "Lili",
+    "lastName": "Mur",
+    "department": "c"
+  }
+]

@@ -1,61 +1,62 @@
 'use strict'
 
-const {mapUser, getRandomFirstName} = require('./util')
+const { userService } = require('./services/users')
+const { articleService } = require('./services/articles')
+// const { studentService } = require('./services/students')
 
 // db connection and settings
 const connection = require('./config/connection')
-let userCollection
-run()
 
-async function run() {
+let userCollection 
+let articleCollection
+// let studentCollection
+
+runUsersTask() 
+runArticlesTask()
+// runStudentsTask()
+
+//-----------------------User Task-------------------
+async function runUsersTask() {
   await connection.connect()
   await connection.get().dropCollection('users')
   userCollection = connection.get().collection('users')
 
-  await example1()
-  await example2()
-  await example3()
-  await example4()
-  await connection.close()
+  await userService.createUsers(userCollection)
+  await userService.deleteOneUser(userCollection)
+  await userService.updateFirstName(userCollection)
+  await userService.findAllUsers(userCollection)
+  await connection.close(userCollection)
 }
 
-// #### Users
 
-// - Create 2 users per department (a, b, c)
-async function example1() {
+// -----------------------Article Task-------------------
+async function runArticlesTask() {
+  await connection.connect()
+  await connection.get().dropCollection('articles')
+  articleCollection = connection.get().collection('articles')
 
-  try {
-
-  } catch (err) {
-    console.error(err)
-  }
+  await articleService.createArticles(articleCollection)
+  await articleService.updateTagList(articleCollection)
+  await articleService.addTags(articleCollection)
+  await articleService.findAllwithQuery(articleCollection)
+  await articleService.pullTags(articleCollection)
+  await connection.close(articleCollection)
 }
 
-// - Delete 1 user from department (a)
 
-async function example2() {
-  try {
+//-----------------------Students Task-------------------
+// async function runStudentsTask() {
+//   await connection.connect()
+//   await connection.get().dropCollection('students')
+//   studentCollection = connection.get().collection('students')
 
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-// - Update firstName for users from department (b)
-
-async function example3() {
-  try {
-
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-// - Find all users from department (c)
-async function example4() {
-  try {
-
-  } catch (err) {
-    console.error(err)
-  }
-}
+//   await studentService.createStudents(studentCollection)
+//   await studentService.findWorstHW(studentCollection)
+//   await studentService.findBestQuizAndWorstHW(studentCollection)
+//   await studentService.findBestQuizAndBestExam(studentCollection)
+//   await studentService.averageScoreHW(studentCollection)
+//   await studentService.deleteWithQuery(studentCollection)
+//   await studentService.markWithQuery(studentCollection)
+//   await studentService.groupByAverageGrade(studentCollection)
+//   await connection.close(studentCollection)
+// }
